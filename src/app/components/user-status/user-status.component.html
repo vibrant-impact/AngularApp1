@@ -1,0 +1,13 @@
+<div class="status-box">
+  <div class="status-indicator-group">
+    <span
+      class="status-dot"
+      [ngClass]="currentStatus === 'Active on Quest' ? 'dot-active' : 'dot-resting'"
+    ></span>
+    <span class="status-text">{{ currentStatus }}</span>
+  </div>
+
+  <button class="toggle-button" (click)="toggleStatus()">
+    {{ currentStatus === 'Active on Quest' ? 'Return to Tavern' : 'Deploy on Quest' }}
+  </button>
+</div>

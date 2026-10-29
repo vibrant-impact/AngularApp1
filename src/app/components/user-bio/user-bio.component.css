@@ -1,0 +1,89 @@
+.bio-container {
+  background-color: #1a1e29;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #2d3748;
+}
+
+.bio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.bio-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bio-display p {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.lore-textarea {
+  width: 100%;
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  color: #f1f5f9;
+  padding: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.lore-textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.action-button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.edit-button {
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
+
+.edit-button:hover {
+  background-color: #374151;
+}
+
+.save-button {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.save-button:hover {
+  background-color: #059669;
+}
+
+.cancel-button {
+  background-color: #4b5563;
+  color: #e2e8f0;
+}
+
+.cancel-button:hover {
+  background-color: #374151;
+}

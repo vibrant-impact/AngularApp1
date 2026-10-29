@@ -1,0 +1,25 @@
+<div class="bio-container">
+  <div class="bio-header">
+    <h3 class="bio-title">Character Lore</h3>
+    <button *ngIf="!isEditing" class="action-button edit-button" (click)="enableEditing()">
+      Edit Lore
+    </button>
+  </div>
+
+  <div *ngIf="!isEditing" class="bio-display">
+    <p>{{ backstory }}</p>
+  </div>
+
+  <div *ngIf="isEditing" class="bio-editor">
+    <textarea
+      [(ngModel)]="editableContent"
+      rows="4"
+      class="lore-textarea"
+      placeholder="Record hero chronicle..."
+    ></textarea>
+    <div class="button-row">
+      <button class="action-button save-button" (click)="saveChanges()">Save</button>
+      <button class="action-button cancel-button" (click)="cancelEditing()">Cancel</button>
+    </div>
+  </div>
+</div>

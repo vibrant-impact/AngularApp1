@@ -1,0 +1,30 @@
+<div class="card-container" [ngClass]="heroData.currentStatus === 'Active on Quest' ? 'status-questing' : 'status-resting'">
+  <div class="avatar-wrapper">
+    <img [src]="heroData.avatarUrl" [alt]="heroData.characterName" class="avatar-image" />
+    <span class="level-badge">LVL {{ heroData.characterLevel }}</span>
+  </div>
+
+  <div class="hero-details">
+    <h2 class="hero-name">{{ heroData.characterName }}</h2>
+    <p class="hero-class">{{ heroData.characterClass }}</p>
+  </div>
+
+  <div class="stats-panel">
+    <div class="stat-item">
+      <span class="stat-label">HP</span>
+      <span class="stat-value">{{ heroData.attributes.healthPoints }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">MP</span>
+      <span class="stat-value">{{ heroData.attributes.manaPoints }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">STR</span>
+      <span class="stat-value">{{ heroData.attributes.strength }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">INT</span>
+      <span class="stat-value">{{ heroData.attributes.intelligence }}</span>
+    </div>
+  </div>
+</div>
