@@ -1,8 +1,8 @@
 .card-container {
-  background-color: #1a1e29;
-  border-radius: 12px;
+  background-color: #161b22;
+  border-radius: 14px;
   padding: 24px;
-  border: 2px solid #2d3748;
+  border: 2px solid #30363d;
   color: #e2e8f0;
   display: flex;
   flex-direction: column;
@@ -10,22 +10,21 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Dynamic glow depending on hero operational status */
 .card-container.status-questing {
-  border-color: #10b981;
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+  border-color: #238636;
+  box-shadow: 0 0 20px rgba(35, 134, 54, 0.3);
 }
 
 .card-container.status-resting {
-  border-color: #f59e0b;
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
+  border-color: #d29922;
+  box-shadow: 0 0 20px rgba(210, 153, 34, 0.25);
 }
 
 .avatar-wrapper {
   position: relative;
   width: 120px;
   height: 120px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .avatar-image {
@@ -33,64 +32,204 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #374151;
+  border: 3px solid #30363d;
 }
 
 .level-badge {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #4f46e5;
+  background-color: #6366f1;
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 9999px;
-  border: 2px solid #1a1e29;
+  border: 2px solid #161b22;
+}
+
+.hero-details {
+  text-align: center;
 }
 
 .hero-name {
   margin: 0;
   font-size: 22px;
   font-weight: 700;
-  color: #f8fafc;
-  text-align: center;
+  color: #f0f6fc;
 }
 
 .hero-class {
-  margin: 4px 0 16px 0;
-  font-size: 14px;
-  color: #94a3b8;
-  text-align: center;
+  margin: 4px 0 12px 0;
+  font-size: 13px;
+  color: #8b949e;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
+/* Specialty Badges */
+.badges-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.specialty-badge {
+  background-color: #21262d;
+  color: #58a6ff;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+}
+
+/* Vital Progress Bars */
+.vital-meters {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.meter-group {
+  width: 100%;
+}
+
+.meter-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.meter-label {
+  color: #8b949e;
+}
+
+.meter-values {
+  color: #c9d1d9;
+}
+
+.meter-track {
+  width: 100%;
+  height: 8px;
+  background-color: #0d1117;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #21262d;
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out;
+}
+
+.fill-hp {
+  background: linear-gradient(90deg, #1f6feb, #238636);
+}
+
+.fill-mp {
+  background: linear-gradient(90deg, #6366f1, #38bdf8);
+}
+
+/* Level Up Area */
+.level-action-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.level-up-button {
+  background-color: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 100%;
+}
+
+.level-up-button:hover {
+  background-color: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.skill-points-counter {
+  font-size: 12px;
+  color: #e3b341;
+  font-weight: 500;
+}
+
+.skill-points-counter strong {
+  color: #f0f6fc;
+}
+
+/* Stats Panel */
 .stats-panel {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   width: 100%;
-  background-color: #111827;
+  background-color: #0d1117;
   padding: 12px;
-  border-radius: 8px;
-  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #21262d;
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4px;
 }
 
 .stat-label {
   font-size: 11px;
-  color: #64748b;
+  color: #8b949e;
   font-weight: 600;
 }
 
 .stat-value {
   font-size: 14px;
-  color: #f1f5f9;
+  color: #f0f6fc;
   font-weight: 700;
+}
+
+.stat-plus-button {
+  background-color: #21262d;
+  color: #58a6ff;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.stat-plus-button:hover:not(:disabled) {
+  background-color: #58a6ff;
+  color: #0d1117;
+  border-color: #58a6ff;
+}
+
+.stat-plus-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }

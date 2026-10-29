@@ -1,59 +1,106 @@
-# AngularApp1
+# AngularApp1: Hero Command Deck (RPG Profile Dashboard)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.27.
+An interactive character profile dashboard built with **Angular (Standalone Components)** and **TypeScript**. This project satisfies the requirements for Assignment 1, demonstrating component communication, data modeling, scoped styling, and modern UI enhancements.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🌟 Overview & Creative Twist
 
-```bash
-ng serve
+Instead of a standard generic profile, this application models an **Interactive RPG Hero Sheet & Command Deck**:
+- **Dynamic Operational Status:** Toggles between `"Active on Quest"` and `"Resting at Tavern"`. Switching states alters the ambient status badge and updates the avatar aura/glow across components.
+- **Resource Progress Bars:** Dynamic percentage meters for Health Points (HP) and Mana Points (MP) with smooth CSS transitions.
+- **Leveling & Stat Allocation System:** Leveling up awards unspent stat points that can be interactively distributed across primary attributes (STR, AGI, INT, and Vitality).
+- **Specialty Badges:** Dynamically rendered tags demonstrating `*ngFor` iteration.
+- **Live Lore Editor:** Inline markdown/backstory editing that persists updates back to the parent state.
+
+---
+
+## 🏗️ Architecture & Component Interaction
+
+The application follows Angular's **unidirectional data flow** pattern using `@Input()` properties and `@Output()` event emitters:
+
+```
+                  +-----------------------+
+                  |     AppComponent      |
+                  | (Master State Source) |
+                  +-----------+-----------+
+                              |
+        +---------------------+---------------------+
+        |                     |                     |
+   [heroData]          [currentStatus]          [backstory]
+ (levelUpRequested)    (statusChanged)       (backstoryUpdated)
+ (statIncreased)              |                     |
+        v                     v                     v
++------------------+ +-------------------+ +------------------+
+|  UserCardComp    | |  UserStatusComp   | |   UserBioComp    |
+| (Avatar, Badges, | | (Readiness Toggle | | (Lore Chronicle  |
+|  Bars, & Stats)  | |   & Live Dot)     | |   Inline Editor) |
++------------------+ +-------------------+ +------------------+
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Components Summary
 
-## Code scaffolding
+1. **`UserCardComponent` (`<app-user-card>`)**
+   - **Input:** `[heroData]` (`CharacterProfile`)
+   - **Outputs:** `(levelUpRequested)`, `(statIncreased)`
+   - **Role:** Visualizes character identity, status-dependent border glow, animated HP/MP meters, skill badges, and attribute allocation buttons.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. **`UserStatusComponent` (`<app-user-status>`)**
+   - **Input:** `[currentStatus]` (`QuestStatus`)
+   - **Output:** `(statusChanged)`
+   - **Role:** Displays deployment status with animated indicator dot and provides a toggle button emitting the updated state.
 
-```bash
-ng generate component component-name
-```
+3. **`UserBioComponent` (`<app-user-bio>`)**
+   - **Input:** `[backstory]` (`string`)
+   - **Output:** `(backstoryUpdated)`
+   - **Role:** Displays character lore with an inline edit mode powered by two-way data binding (`[(ngModel)]`).
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 📐 Data Modeling
 
-## Building
+All data structures are strongly typed under `src/app/models/character-profile.model.ts`:
 
-To build the project run:
+- `QuestStatus`: Union type `'Active on Quest' | 'Resting at Tavern'`
+- `CharacterAttributes`: Interface modeling core resources (`healthPoints`, `maxHealthPoints`, `manaPoints`, `maxManaPoints`, `strength`, `agility`, `intelligence`)
+- `CharacterProfile`: Master interface aggregating identity, attributes, badge arrays, and backstory
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🚀 Getting Started
 
-## Running unit tests
+### Prerequisites
+- Node.js (v18.x or v20.x recommended)
+- Angular CLI installed globally (`npm install -g @angular/cli`)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Installation & Run
 
-```bash
-ng test
-```
+1. Clone the repository and navigate into the folder:
+   ```bash
+   git clone <your-repo-url>
+   cd AngularApp1
+   ```
 
-## Running end-to-end tests
+2. Install dependencies:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
 
-For end-to-end (e2e) testing, run:
+3. Launch the development server:
+   ```bash
+   ng serve
+   ```
 
-```bash
-ng e2e
-```
+4. Open your browser and navigate to:
+   ```
+   http://localhost:4200/
+   ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 🎨 Encapsulated Styles
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Each component uses isolated, scoped CSS:
+- Dark glassmorphism palette (`#0d1117`, `#161b22`, `#21262d`)
+- Status glows (`#238636` for Questing, `#d29922` for Tavern)
+- Fluid transitions on stat bars and buttons

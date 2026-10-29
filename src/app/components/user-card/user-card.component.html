@@ -9,22 +9,98 @@
     <p class="hero-class">{{ heroData.characterClass }}</p>
   </div>
 
+  <!-- Specialty Badges List -->
+  <div class="badges-wrapper">
+    <span class="specialty-badge" *ngFor="let badge of heroData.specialtyBadges">
+      {{ badge }}
+    </span>
+  </div>
+
+  <!-- Resource Progress Bars (HP & MP) -->
+  <div class="vital-meters">
+    <div class="meter-group">
+      <div class="meter-header">
+        <span class="meter-label">HP</span>
+        <span class="meter-values">{{ heroData.attributes.healthPoints }} / {{ heroData.attributes.maxHealthPoints }}</span>
+      </div>
+      <div class="meter-track">
+        <div class="meter-fill fill-hp" [style.width.%]="getHealthPercentage()"></div>
+      </div>
+    </div>
+
+    <div class="meter-group">
+      <div class="meter-header">
+        <span class="meter-label">MP</span>
+        <span class="meter-values">{{ heroData.attributes.manaPoints }} / {{ heroData.attributes.maxManaPoints }}</span>
+      </div>
+      <div class="meter-track">
+        <div class="meter-fill fill-mp" [style.width.%]="getManaPercentage()"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Level Up Action Bar -->
+  <div class="level-action-bar">
+    <button class="level-up-button" (click)="onLevelUp()">
+      Level Up (+1 LVL)
+    </button>
+    <div class="skill-points-counter" *ngIf="heroData.unspentSkillPoints > 0">
+      Available Stat Points: <strong>{{ heroData.unspentSkillPoints }}</strong>
+    </div>
+  </div>
+
+  <!-- Interactive Stats Panel -->
   <div class="stats-panel">
-    <div class="stat-item">
-      <span class="stat-label">HP</span>
-      <span class="stat-value">{{ heroData.attributes.healthPoints }}</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">MP</span>
-      <span class="stat-value">{{ heroData.attributes.manaPoints }}</span>
-    </div>
     <div class="stat-item">
       <span class="stat-label">STR</span>
       <span class="stat-value">{{ heroData.attributes.strength }}</span>
+      <button
+        class="stat-plus-button"
+        [disabled]="heroData.unspentSkillPoints === 0"
+        (click)="onIncreaseStat('strength')"
+        title="Increase Strength"
+      >
+        +
+      </button>
     </div>
+
+    <div class="stat-item">
+      <span class="stat-label">AGI</span>
+      <span class="stat-value">{{ heroData.attributes.agility }}</span>
+      <button
+        class="stat-plus-button"
+        [disabled]="heroData.unspentSkillPoints === 0"
+        (click)="onIncreaseStat('agility')"
+        title="Increase Agility"
+      >
+        +
+      </button>
+    </div>
+
     <div class="stat-item">
       <span class="stat-label">INT</span>
       <span class="stat-value">{{ heroData.attributes.intelligence }}</span>
+      <button
+        class="stat-plus-button"
+        [disabled]="heroData.unspentSkillPoints === 0"
+        (click)="onIncreaseStat('intelligence')"
+        title="Increase Intelligence"
+      >
+        +
+      </button>
+    </div>
+
+    <div class="stat-item">
+      <span class="stat-label">HEAL</span>
+      <span class="stat-value">+HP</span>
+      <button
+        class="stat-plus-button"
+        [disabled]="heroData.unspentSkillPoints === 0"
+        (click)="onIncreaseStat('healthPoints')"
+        title="Restore/Increase HP"
+      >
+        +
+      </button>
     </div>
   </div>
 </div>

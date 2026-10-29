@@ -5,17 +5,21 @@
   </header>
 
   <div class="dashboard-grid">
-    <!-- Component 1: User Card -->
-    <app-user-card [heroData]="heroCharacter"></app-user-card>
+    <!-- Component 1: User Card with Level and Stat Events -->
+    <app-user-card
+      [heroData]="heroCharacter"
+      (levelUpRequested)="handleLevelUp()"
+      (statIncreased)="handleStatIncrease($event)"
+    ></app-user-card>
 
     <div class="side-column">
-      <!-- Component 2: User Status -->
+      <!-- Component 2: User Status Toggle -->
       <app-user-status
         [currentStatus]="heroCharacter.currentStatus"
         (statusChanged)="handleStatusUpdate($event)"
       ></app-user-status>
 
-      <!-- Component 3: User Bio -->
+      <!-- Component 3: User Bio & Lore -->
       <app-user-bio
         [backstory]="heroCharacter.characterBackstory"
         (backstoryUpdated)="handleBackstoryUpdate($event)"
